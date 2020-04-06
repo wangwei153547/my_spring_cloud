@@ -13,7 +13,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver                # mysql驱动包
     type: com.alibaba.druid.pool.DruidDataSource              # 当前数据源操作类型
-    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true                    # 数据库名称
+    url: jdbc:mysql://114.215.42.193:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true                    # 数据库名称
     username: root
     password: 123456
     dbcp2:
