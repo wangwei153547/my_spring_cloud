@@ -14,13 +14,7 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @ClassName SwaggerProvider
- * @Description TODO
- * @Author lcy
- * @Date 17:22 2019/7/23
- * @Version 1.0
- **/
+
 @Component
 @Primary
 

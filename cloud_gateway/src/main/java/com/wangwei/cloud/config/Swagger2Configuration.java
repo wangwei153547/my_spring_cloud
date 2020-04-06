@@ -18,13 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.List;
 
-/**
- * @ClassName SwaggerConfig
- * @Description TODO
- * @Author lcy
- * @Date 17:04 2019/7/27
- * @Version 1.0
- **/
+
 @Profile({"dev"})
 @Configuration
 @EnableSwagger2
