@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9005/eureka
+      defaultZone: http://49.234.99.107:9005/eureka
 spring:
   application:
     name: oauth2-server   # 应用名称
