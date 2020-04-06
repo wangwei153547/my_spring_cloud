@@ -1,0 +1,58 @@
+server:
+  port: 8002
+
+#mybatis:
+#  config-location: "classpath:mybatis/mybatis.cfg.xml"        # mybatis配置文件所在路径
+#  mapper-locations:
+#    - "classpath:mybatis/mapper/**/*.xml"                     # mapper映射文件
+ # type-aliases-package: com.wangwei.cloud.entity            # 别名类所在包
+
+spring:
+  application:
+    name: microservicecloud-provider                          #微服务的名字
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver                # mysql驱动包
+    type: com.alibaba.druid.pool.DruidDataSource              # 当前数据源操作类型
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true                    # 数据库名称
+    username: root
+    password: 123456
+    dbcp2:
+      initial-size: 5                                         # 初始化连接数
+      max-total: 5                                            # 最大连接数
+      max-wait-millis: 200                                    # 等待连接获取的最大超时时间
+      min-idle: 5                                             # 数据库连接池的最小维持连接数
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9005/eureka
+# sso　认证配置
+#oauth2-server: http://localhost:18082
+
+#security:
+#  oauth2:
+#    client:
+#      # grant-type: client_credentials    # 授权模式
+#      client-id: client_3        # 在oauth 服务端注册的client-id
+#      client-secret: secret     # 在oauth 服务端注册的secret
+#      access-token-uri: ${oauth2-server}/oauth/token    #获取token 地址
+#      user-authorization-uri: ${oauth2-server}/oauth/authorize  # 认证地址
+#      scope: read,write
+#    resource:
+#      token-info-uri: ${oauth2-server}/oauth/check_token  # 检查token
+#      user-info-uri: ${oauth2-server}/oauth/me   # 用户信息
+#      jwt:
+#        key-uri: ${oauth2-server}/oauth/token_key
+#    sso:
+#      login-path: /login
+
+
+info:
+  app.name: microservicecloud-provider
+  company.name: www.wangwei.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+logging:
+  level:
+    com.wangwei.cloud.dao: DEBUG
