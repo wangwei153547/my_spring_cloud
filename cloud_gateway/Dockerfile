@@ -8,7 +8,7 @@ MAINTAINER cqd
 VOLUME /tmp
 
 #复制上下文目录下的target/demo-1.0.0.jar 到容器里
-COPY target/demo-0.0.1-SNAPSHOT.jar  docker-0.0.1.jar
+COPY target/cloud_gateway-0.0.1-SNAPSHOT.jar  docker-0.0.1.jar
 
 #bash方式执行，使demo-1.0.0.jar可访问
 #RUN新建立一层，在其上执行这些命令，执行结束后， commit 这一层的修改，构成新的镜像。
