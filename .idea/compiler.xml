@@ -9,8 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cloud_gateway" />
         <module name="eureka-server" />
-        <module name="cloud_oauth2" />
         <module name="cloud_provider" />
+        <module name="cloud_oauth2" />
         <module name="swagger" />
       </profile>
     </annotationProcessing>
