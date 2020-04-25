@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * <p>
  *  前端控制器
@@ -55,7 +57,7 @@ public class UserController {
     }
     @RequestMapping(value = "/deleteUser",method= RequestMethod.POST)
     @ApiOperation("删除用户")
-    public ResponseEntity<Boolean> deleteUsers(User user  ) throws IllegalAccessException {
-        return Results.success(service.removeById(user.getUserId()));
+    public ResponseEntity<Boolean> deleteUsers(List<User> user  ) throws IllegalAccessException {
+        return Results.success(service.removeByIds(user));
     }
 }
