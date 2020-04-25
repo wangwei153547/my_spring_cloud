@@ -57,7 +57,10 @@ public class UserController {
     }
     @RequestMapping(value = "/deleteUser",method= RequestMethod.POST)
     @ApiOperation("删除用户")
-    public ResponseEntity<Boolean> deleteUsers(List<User> user  ) throws IllegalAccessException {
-        return Results.success(service.removeByIds(user));
+    public ResponseEntity<Boolean> deleteUsers(List<User> users  ) throws IllegalAccessException {
+        for  (User user :users){
+            service.removeById(user.getUserId());
+        }
+        return Results.success();
     }
 }
