@@ -61,6 +61,6 @@ public class UserController {
         for  (User user :users){
             service.removeById(user.getUserId());
         }
-        return Results.success();
+        return Results.success( true);
     }
 }
