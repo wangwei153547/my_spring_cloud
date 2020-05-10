@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,8 +36,8 @@ public class UserController {
     IUserService  service;
     @RequestMapping(value = "/getAll",method= RequestMethod.POST)
     @ApiOperation("查询所有")
-    public ResponseEntity<IPage<User>> getSysUsers(User user, PageRequest pageRequest) throws IllegalAccessException {
-
+    public ResponseEntity<IPage<User>> getSysUsers(  User user, PageRequest pageRequest) throws IllegalAccessException {
+        System.out.println(pageRequest.toString());
         MyQueryWrapper<User> queryWrapper2 = new MyQueryWrapper<>();
         queryWrapper2.allEq2(user,pageRequest);
 
@@ -57,10 +58,20 @@ public class UserController {
     }
     @RequestMapping(value = "/deleteUser",method= RequestMethod.POST)
     @ApiOperation("删除用户")
-    public ResponseEntity<Boolean> deleteUsers(List<User> users  ) throws IllegalAccessException {
+    public ResponseEntity<Boolean> deleteUsers( @RequestBody  List<User> users  ) throws IllegalAccessException {
+        System.out.println(users);
         for  (User user :users){
             service.removeById(user.getUserId());
         }
         return Results.success( true);
     }
+    @RequestMapping(value = "/saveUsers",method= RequestMethod.POST)
+    @ApiOperation("保存用户")
+    public ResponseEntity<Boolean> saveUsers( @RequestBody  List<User> users  ) throws IllegalAccessException {
+
+
+    return Results.success(  service.saveOrUpdateBatch(users));
+    }
+
+
 }

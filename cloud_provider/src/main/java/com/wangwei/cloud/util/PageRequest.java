@@ -23,5 +23,8 @@ public class PageRequest  implements Serializable {
     private int size;
     @ApiModelProperty(value = "排序")
     private List<Sort> sorts;
-
+    @ApiModelProperty(value = "顺序")
+    private String direction;
+    @ApiModelProperty(value = "排序字段")
+    private String  order;
 }

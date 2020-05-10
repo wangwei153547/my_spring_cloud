@@ -25,13 +25,13 @@ public class MyQueryWrapper<T> extends QueryWrapper {
             }
         }
         List<Sort> list=pageRequest.getSorts();
-        if(list!=null) {
-            for (Sort sort : list) {
-                if ("desc".equals(sort.getDirection())) {
-                    this.orderByDesc(this.camelToUnderline(sort.getOrder()));
+         if(pageRequest.getOrder()!=null&&!"".equals(pageRequest.getOrder())) {
+           // for (Sort sort : list) {
+                if ("desc".equals(pageRequest.getDirection())) {
+                    this.orderByDesc(this.camelToUnderline(pageRequest.getOrder()));
                 } else {
-                    this.orderByAsc(this.camelToUnderline(sort.getOrder()));
-                }
+                    this.orderByAsc(this.camelToUnderline(pageRequest.getOrder()));
+         //       }
             }
         }
 
