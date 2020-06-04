@@ -133,7 +133,7 @@
 
                 <configuration>
 
-                    <repository>wangwei/oauth</repository>
+                    <repository>153547767/oauth</repository>
                     <tag>${project.version}</tag>
 
                     <buildArgs>

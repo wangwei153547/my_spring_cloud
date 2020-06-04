@@ -61,7 +61,7 @@
 
                 <configuration>
 
-                    <repository>wangwei/eureka</repository>
+                    <repository>153547767/eureka</repository>
                     <tag>${project.version}</tag>
 
                     <buildArgs>

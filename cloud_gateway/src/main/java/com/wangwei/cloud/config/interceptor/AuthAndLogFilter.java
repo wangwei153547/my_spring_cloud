@@ -116,6 +116,7 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
                 }
             }
         }
+
         return params;
     }
 

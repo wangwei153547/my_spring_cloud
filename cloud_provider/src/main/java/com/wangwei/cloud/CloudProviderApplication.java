@@ -1,5 +1,7 @@
 package com.wangwei.cloud;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
+import com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
@@ -19,4 +21,13 @@ public class CloudProviderApplication {
    // OAuth2RestTemplate oauth2RestTemplate(@Qualifier("oauth2ClientContext") OAuth2ClientContext oauth2ClientContext, OAuth2ProtectedResourceDetails details) {
     //    return new OAuth2RestTemplate(details, oauth2ClientContext);
     //}
+   @Bean
+  public ConfigurationCustomizer mybatisConfigurationCustomizer(){
+  return new ConfigurationCustomizer() {
+    @Override    
+           public void customize(org.apache.ibatis.session.Configuration configuration) {
+      configuration.setObjectWrapperFactory(new MybatisMapWrapperFactory());
+    }
+  };
+   } 
 }

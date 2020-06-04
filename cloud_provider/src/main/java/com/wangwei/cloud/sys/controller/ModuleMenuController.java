@@ -37,40 +37,43 @@ public class ModuleMenuController {
     IModuleMenuService  service;
     @RequestMapping(value = "/getAll",method= RequestMethod.POST)
     @ApiOperation("查询所有")
-    public ResponseEntity<IPage<ModuleMenu>> getSysModuleMenus(ModuleMenu user, PageRequest pageRequest) throws IllegalAccessException {
+    public ResponseEntity<IPage<ModuleMenu>> getAll(ModuleMenu record, PageRequest pageRequest) throws IllegalAccessException {
         System.out.println(pageRequest.toString());
         MyQueryWrapper<ModuleMenu> queryWrapper2 = new MyQueryWrapper<>();
-        queryWrapper2.allEq2(user,pageRequest);
+        queryWrapper2.allEq2(record,pageRequest);
 
         IPage<ModuleMenu> page1=service.page(new Page<>(pageRequest.getPage(),pageRequest.getSize()),queryWrapper2);
 
 
         return Results.success(page1 );
     }
+
     @RequestMapping(value = "/insert",method= RequestMethod.POST)
     @ApiOperation("添加菜单")
-    public ResponseEntity<Boolean> insertModuleMenus(ModuleMenu user  ) throws IllegalAccessException {
-        return Results.success(service.save(user));
+    public ResponseEntity<Boolean> insert(ModuleMenu record  ) throws IllegalAccessException {
+        return Results.success(service.save(record));
     }
     @RequestMapping(value = "/update",method= RequestMethod.POST)
     @ApiOperation("修改菜单")
-    public ResponseEntity<Boolean> updateModuleMenus(ModuleMenu user  ) throws IllegalAccessException {
-        return Results.success(service.save(user));
+    public ResponseEntity<Boolean> update(ModuleMenu record  ) throws IllegalAccessException {
+        return Results.success(service.save(record));
     }
-    @RequestMapping(value = "/deleteModuleMenu",method= RequestMethod.POST)
+    @RequestMapping(value = "/delete",method= RequestMethod.POST)
     @ApiOperation("删除菜单")
-    public ResponseEntity<Boolean> deleteModuleMenus( @RequestBody List<ModuleMenu> users  ) throws IllegalAccessException {
-        System.out.println(users);
-        for  (ModuleMenu user :users){
-            service.removeById(user.getModuleId());
+    public ResponseEntity<Boolean> delete( @RequestBody List<ModuleMenu> records  ) throws IllegalAccessException {
+        System.out.println(records);
+        for  (ModuleMenu record :records){
+            service.removeById(record.getModuleId());
         }
         return Results.success( true);
     }
-    @RequestMapping(value = "/saveModuleMenus",method= RequestMethod.POST)
+    @RequestMapping(value = "/save",method= RequestMethod.POST)
     @ApiOperation("保存菜单")
-    public ResponseEntity<Boolean> saveModuleMenus( @RequestBody  List<ModuleMenu> users  ) throws IllegalAccessException {
+    public ResponseEntity<Boolean> save( @RequestBody  List<ModuleMenu> records  ) throws IllegalAccessException {
 
+        System.out.println(12345);
+        System.out.println(records.toString());
 
-        return Results.success(  service.saveOrUpdateBatch(users));
+        return Results.success(  service.saveOrUpdateBatch(records));
     }
 }

@@ -138,7 +138,7 @@
 
                 <configuration>
 
-                    <repository>wangwei/provider</repository>
+                    <repository>153547767/provider</repository>
                     <tag>${project.version}</tag>
 
                     <buildArgs>

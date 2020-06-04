@@ -1,5 +1,6 @@
 package com.wangwei.cloud.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -43,6 +44,14 @@ public class ModuleMenu implements Serializable {
     private String moduleUrl;
 
     private Integer parentModuleId;
-    private List<ModuleMenu> childModule;
+
+    private Integer sortNumber;
+    private String moduleCode;
+    @TableField(exist=false)
+    private    List<ModuleMenu> childModule;
+    @TableField(exist=false)
+    private String isHas;
+    @TableField(exist=false)
+    private Integer roleId;
 
 }

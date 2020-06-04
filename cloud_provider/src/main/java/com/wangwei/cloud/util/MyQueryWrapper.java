@@ -16,10 +16,12 @@ public class MyQueryWrapper<T> extends QueryWrapper {
             Object val = f.get(queryParam);// 得到此属性的值
             System.out.println("name:" + f.getName() + "\t value = " + val);
             String type = f.getType().toString();
-            if(f.getName()!="serialVersionUID"&&val!=null&&val!="") {
+
+            if(f.getName()!="serialVersionUID"&&val!=null&&!"".equals(val)) {
+
                 if(type.endsWith("String")) {
                     this.like(this.camelToUnderline(f.getName()),val);
-                }else if(type.endsWith("int")){
+                }else if(type.endsWith("int")||type.endsWith("Int")){
                     this.eq(this.camelToUnderline(f.getName()),val);
             }
             }
@@ -34,6 +36,29 @@ public class MyQueryWrapper<T> extends QueryWrapper {
          //       }
             }
         }
+
+    }
+    public void allEq2(T queryParam) throws IllegalAccessException {
+        Class userCla2 = (Class) queryParam.getClass();
+        Field[] fs = userCla2.getDeclaredFields();
+        for(int i = 0;i < fs.length;i++)
+        {
+            Field f = fs[i];
+            f.setAccessible(true); // 设置些属性是可以访问的
+            Object val = f.get(queryParam);// 得到此属性的值
+            System.out.println("name:" + f.getName() + "\t value = " + val);
+            String type = f.getType().toString();
+            System.out.println(type);
+            if(f.getName()!="serialVersionUID"&&val!=null&&val!="") {
+                if(type.endsWith("String")) {
+                    this.like(this.camelToUnderline(f.getName()),val);
+                }else if(type.endsWith("int")||type.endsWith("Integer")){
+                    this.eq(this.camelToUnderline(f.getName()),val);
+                }
+            }
+        }
+
+
 
     }
     public static String camelToUnderline(String str) {

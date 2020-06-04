@@ -30,7 +30,7 @@ public class UserRole implements Serializable {
     @TableId(value = "user_role_id", type = IdType.AUTO)
     private Integer userRoleId;
 
-    private Integer uerId;
+    private Integer userId;
 
     private Integer roleId;
 

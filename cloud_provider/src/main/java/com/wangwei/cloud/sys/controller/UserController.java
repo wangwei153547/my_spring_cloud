@@ -37,7 +37,7 @@ public class UserController {
     @RequestMapping(value = "/getAll",method= RequestMethod.POST)
     @ApiOperation("查询所有")
     public ResponseEntity<IPage<User>> getSysUsers(  User user, PageRequest pageRequest) throws IllegalAccessException {
-        System.out.println(pageRequest.toString());
+
         MyQueryWrapper<User> queryWrapper2 = new MyQueryWrapper<>();
         queryWrapper2.allEq2(user,pageRequest);
 
@@ -46,7 +46,7 @@ public class UserController {
 
         return Results.success(page1 );
     }
-    @RequestMapping(value = "/insertUser",method= RequestMethod.POST)
+    @RequestMapping(value = "/insert",method= RequestMethod.POST)
     @ApiOperation("添加用户")
     public ResponseEntity<Boolean> insertUsers(User user  ) throws IllegalAccessException {
        return Results.success(service.save(user));
@@ -56,7 +56,7 @@ public class UserController {
     public ResponseEntity<Boolean> updateUsers(User user  ) throws IllegalAccessException {
         return Results.success(service.save(user));
     }
-    @RequestMapping(value = "/deleteUser",method= RequestMethod.POST)
+    @RequestMapping(value = "/delete",method= RequestMethod.POST)
     @ApiOperation("删除用户")
     public ResponseEntity<Boolean> deleteUsers( @RequestBody  List<User> users  ) throws IllegalAccessException {
         System.out.println(users);
@@ -65,7 +65,7 @@ public class UserController {
         }
         return Results.success( true);
     }
-    @RequestMapping(value = "/saveUsers",method= RequestMethod.POST)
+    @RequestMapping(value = "/save",method= RequestMethod.POST)
     @ApiOperation("保存用户")
     public ResponseEntity<Boolean> saveUsers( @RequestBody  List<User> users  ) throws IllegalAccessException {
 

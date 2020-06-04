@@ -26,10 +26,40 @@ public class RoleModuleServiceImpl extends ServiceImpl<RoleModuleMapper, RoleMod
 
 
         List<ModuleMenu> lists= this.baseMapper.getModuleMenu(user_name,moduleLevl,parentModuleId);
+        System.out.println(lists.toString());
          for(ModuleMenu moduleMenu:lists){
              List<ModuleMenu> lists2=getUserModules(  user_name, moduleMenu.getModuleLevl()+1, moduleMenu.getModuleId());
              moduleMenu.setChildModule(lists2);
          }
         return lists;
+    }
+    @Override
+    public List<ModuleMenu> getUserModules(int moduleLevl, int parentModuleId){
+
+
+        System.out.println(333333);
+        List<ModuleMenu> lists= this.baseMapper.getModuleMenu3(moduleLevl,parentModuleId);
+
+        for(ModuleMenu moduleMenu:lists){
+            List<ModuleMenu> lists2=getUserModules(  moduleMenu.getModuleLevl()+1, moduleMenu.getModuleId());
+            moduleMenu.setChildModule(lists2);
+        }
+        return lists;
+    }
+    @Override
+    public List<ModuleMenu> getUserModules( int moduleLevl, int parentModuleId,Integer roleId){
+
+
+
+        List<ModuleMenu> lists= this.baseMapper.getModuleMenu2(moduleLevl,parentModuleId,roleId);
+        for(ModuleMenu moduleMenu:lists){
+            List<ModuleMenu> lists2=getUserModules(moduleMenu.getModuleLevl()+1, moduleMenu.getModuleId(),roleId);
+            moduleMenu.setChildModule(lists2);
+        }
+        return lists;
+    }
+    @Override
+    public void deleteByRoleModule(int roleId, int moduleId){
+        this.baseMapper.deleteByRoleModule( roleId,  moduleId);
     }
 }
