@@ -26,12 +26,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.31.14.148:9005/eureka
+      defaultZone: http://localhost:9005/eureka
   instance:
-    ip-address: 172.31.14.148
+    ip-address: localhost
     prefer-ip-address: true
 # sso　认证配置
-#oauth2-server: http://172.31.14.148:18082
+#oauth2-server: http://localhost:18082
 
 #security:
 #  oauth2:
