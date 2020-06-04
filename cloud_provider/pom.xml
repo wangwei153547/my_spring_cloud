@@ -138,7 +138,7 @@
 
                 <configuration>
 
-                    <repository>153547767/provider</repository>
+                    <repository>153547767/providertest</repository>
                     <tag>${project.version}</tag>
 
                     <buildArgs>

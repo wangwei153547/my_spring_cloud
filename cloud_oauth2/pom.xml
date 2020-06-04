@@ -133,7 +133,7 @@
 
                 <configuration>
 
-                    <repository>153547767/oauth</repository>
+                    <repository>153547767/oauthtest</repository>
                     <tag>${project.version}</tag>
 
                     <buildArgs>

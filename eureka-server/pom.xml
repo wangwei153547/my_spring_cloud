@@ -61,7 +61,7 @@
 
                 <configuration>
 
-                    <repository>153547767/eureka</repository>
+                    <repository>153547767/eurekatest</repository>
                     <tag>${project.version}</tag>
 
                     <buildArgs>
