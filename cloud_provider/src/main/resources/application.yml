@@ -26,12 +26,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.17.0.3:9005/eureka
+      defaultZone: http://172.31.14.148:9005/eureka
   instance:
-    ip-address: 172.17.0.3
+    ip-address: 172.31.14.148
     prefer-ip-address: true
 # sso　认证配置
-#oauth2-server: http://localhost:18082
+#oauth2-server: http://172.31.14.148:18082
 
 #security:
 #  oauth2:
@@ -50,7 +50,10 @@ eureka:
 #    sso:
 #      login-path: /login
 
-
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
 info:
   app.name: microservicecloud-provider
   company.name: www.wangwei.com

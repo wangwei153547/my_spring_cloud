@@ -1,7 +1,7 @@
 eureka:
   instance:
-    hostname: 172.17.0.3
-    ip-address: 172.17.0.3
+    hostname: 172.31.14.148
+    ip-address: 172.31.14.148
     prefer-ip-address: true
   client:
     register-with-eureka: false
