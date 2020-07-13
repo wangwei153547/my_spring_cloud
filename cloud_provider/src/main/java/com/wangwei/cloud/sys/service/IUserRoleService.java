@@ -15,5 +15,5 @@ import java.util.Map;
  * @since 2020-03-23
  */
 public interface IUserRoleService extends IService<UserRole> {
-    public List<Map<String,Object>> getUserRoles(int userId );
+    public List<Map<String,Object>> getUserRoles(Long userId );
 }

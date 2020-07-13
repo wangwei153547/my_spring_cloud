@@ -1,16 +1,15 @@
 package com.wangwei.cloud.entity;
 
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * <p>
@@ -18,34 +17,29 @@ import java.util.List;
  * </p>
  *
  * @author jobob
- * @since 2020-03-09
+ * @since 2020-03-23
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_user")
+@TableName("sys_role")
 
-public class User implements Serializable {
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "role_id", type = IdType.AUTO)
+    private Long roleId;
 
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Long userId;
-
-
-    private String userName;
-
-
-    private String userPwd;
-
-
-    private String userCode;
+    private String roleName;
 
     private String isUse;
+    private String roleCode;
     @TableField(exist=false)
-    List<Role> roles;
+    private String  isDefault;
+    private String  authorityCode;
+    private Long unitId;
     @TableField(exist=false)
-    Role  defaultRole;
+    private Long companyId;
 
 }

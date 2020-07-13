@@ -1,10 +1,7 @@
-package com.wangwei.cloud.entity;
+package com.wangwei.cloud.controller;
 
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,15 +20,14 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_user")
+
 
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
 
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Long userId;
+     private Long userId;
 
 
     private String userName;
@@ -43,9 +39,6 @@ public class User implements Serializable {
     private String userCode;
 
     private String isUse;
-    @TableField(exist=false)
     List<Role> roles;
-    @TableField(exist=false)
-    Role  defaultRole;
 
 }
