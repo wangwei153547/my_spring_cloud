@@ -1,6 +1,7 @@
 package com.wangwei.cloud.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +27,7 @@ public class MyAuthorizationServerConfig extends AuthorizationServerConfigurerAd
     @Autowired
     public PasswordEncoder passwordEncoder;
 
+    @Qualifier("userService")
     @Autowired
     public UserDetailsService kiteUserDetailsService;
 
@@ -50,7 +52,7 @@ public class MyAuthorizationServerConfig extends AuthorizationServerConfigurerAd
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("order-client")
-                .secret(passwordEncoder.encode("order-secret-8888"))
+                .secret( "order-secret-8888" )
                 .authorizedGrantTypes("refresh_token", "authorization_code", "password")
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")

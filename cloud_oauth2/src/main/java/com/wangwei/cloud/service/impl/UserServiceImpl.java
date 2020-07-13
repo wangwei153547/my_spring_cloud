@@ -2,10 +2,14 @@ package com.wangwei.cloud.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.wangwei.cloud.entity.AuthUserDetails;
+import com.wangwei.cloud.entity.Role;
 import com.wangwei.cloud.entity.User;
 import com.wangwei.cloud.mapper.UserMapper;
+import com.wangwei.cloud.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,25 +27,24 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
-
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("五十年代1");
+   /* @Autowired
+    RedisUtil redisUtil;*/
+    public UserDetails loadUserByUsername(String userCode) throws UsernameNotFoundException {
+        System.out.println("134444444444");
         QueryWrapper<User> queryWrapper2 = new  QueryWrapper<>();
-        queryWrapper2.eq("user_name",username);
+        queryWrapper2.eq("user_name",userCode);
         User user = userMapper.selectOne(queryWrapper2);
-        System.out.println(user.getUserName());
+        List<Role> lists=userMapper.getUserRoles(userCode);
+        user.setRoles(lists);
+        user.setDefaultRole(lists.get(0));
         if(user == null){
-            log.info("登录用户【"+username + "】不存在.");
-            throw new UsernameNotFoundException("登录用户【"+username + "】不存在.");
+            log.info("登录用户【"+userCode + "】不存在.");
+            throw new UsernameNotFoundException("登录用户【"+userCode + "】不存在.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), BCrypt.hashpw(user.getUserPwd(), BCrypt.gensalt()),true,true,true,true, getAuthority());
+        UserDetails aa =new AuthUserDetails(user);
+        return aa;
     }
 
-    private List getAuthority() {
-
-        System.out.println("五十年代");
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
 
 
 }

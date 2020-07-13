@@ -1,5 +1,7 @@
 package com.wangwei.cloud.config;
 
+import com.wangwei.cloud.config.handler.MyAuthenticationFailHandler;
+import com.wangwei.cloud.config.handler.MyAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -45,6 +47,10 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll();
+       //         .and()
+      //  .formLogin( ).loginPage("/").successHandler(new MyAuthenticationSuccessHandler());
+
+
     }
 
 }

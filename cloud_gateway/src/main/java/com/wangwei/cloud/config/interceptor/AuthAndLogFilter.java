@@ -1,5 +1,7 @@
 package com.wangwei.cloud.config.interceptor;
 
+
+import com.wangwei.cloud.controller.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.reactivestreams.Publisher;
@@ -36,9 +38,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-@Component
+//@Component
 public class AuthAndLogFilter implements GlobalFilter, Ordered {
-
 
     @Autowired
     private RestTemplate restTemplate;
@@ -49,10 +50,16 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
         StringBuilder logBuilder = new StringBuilder();
         Map<String, String> params = parseRequest(exchange, logBuilder);
         String access_token =  params.get("access_token");
-        System.out.println(exchange.getRequest().getPath());
-        System.out.println(access_token);
-       /* if(access_token!=null&&!"".equals(access_token)) {
-            String url = "http://oauth2-server/oauth/me";
+         System.out.println(exchange.getRequest().getPath());
+         System.out.println(access_token);
+     //   User user=new User();getUser
+       // user.setIsUse("Y");
+     //     User listttt=feignContoller.getUser("c36c0bfb-822b-46ae-9fb0-9e153c187691");
+      // System.out.println(listttt.toString());
+    //   if(access_token!=null&&!"".equals(access_token)) {
+         //  User listttt=feignContoller.getUser(access_token);
+         //  serverHttpResponse.getHeaders().set("user_msg",listttt);
+           /* String url = "http://oauth2-server/oauth/me";
             MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
             map.add("access_token", access_token);
             System.out.println(access_token);
@@ -61,9 +68,9 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             headers.addAll(map);
             String respBody = restTemplate.postForObject(url, headers, String.class);
-            serverHttpResponse.getHeaders().set("user_msg",respBody);
+            serverHttpResponse.getHeaders().set("user_msg",respBody);*/
            // exchange.getRequest().getQueryParams().add("userMsg", respBody);
-        }*/
+    //    }
 
         DataBufferFactory bufferFactory = serverHttpResponse.bufferFactory();
         ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(serverHttpResponse) {
