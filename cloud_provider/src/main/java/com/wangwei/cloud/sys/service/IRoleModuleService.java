@@ -17,8 +17,9 @@ import java.util.List;
 
 public interface IRoleModuleService extends IService<RoleModule> {
 
-    public List<ModuleMenu> getUserModules(String user_name, int moduleLevl, int parentModuleId);
-    public List<ModuleMenu> getUserModules(int moduleLevl, int parentModuleId);
-    public List<ModuleMenu> getUserModules(int moduleLevl, int parentModuleId,Integer roleId);
-    public void deleteByRoleModule(int roleId, int moduleId);
+    public List<ModuleMenu> getUserModules(String user_name, Integer moduleLevl, Long parentModuleId);
+    public List<ModuleMenu> getUserModules(int moduleLevl, Long parentModuleId);
+    public List<ModuleMenu> getUserModules(int moduleLevl, Long parentModuleId,Long roleId);
+    public List<ModuleMenu> getUserModulesByUserCode(String roleCode,String moduleName  );
+    public void deleteByRoleModule(Long roleId, Long moduleId);
 }

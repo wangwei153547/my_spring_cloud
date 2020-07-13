@@ -21,20 +21,18 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_role_module")
-@ApiModel(value="RoleModule对象", description="")
-public class RoleModule implements Serializable {
+@TableName("sys_role")
+@ApiModel(value="Role对象", description="")
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "role_module_id", type = IdType.AUTO)
-    private Long roleModuleId;
+    @TableId(value = "role_id", type = IdType.AUTO)
+    private Integer roleId;
 
-    private Long roleId;
-
-    private Long moduleId;
+    private String roleName;
 
     private String isUse;
-
+    private String roleCode;
 
 }
