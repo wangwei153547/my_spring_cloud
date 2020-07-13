@@ -21,7 +21,7 @@ import java.util.Map;
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> implements IUserRoleService {
 
     @Override
-    public List<Map<String, Object>> getUserRoles(int userId) {
+    public List<Map<String, Object>> getUserRoles(Long userId) {
 
         return this.baseMapper.getUserRoles(userId) ;
     }

@@ -1,12 +1,15 @@
 package com.wangwei.cloud.util;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.wangwei.cloud.interceptor.UserThreadLocal;
+import com.wangwei.cloud.sys.entity.Role;
+import com.wangwei.cloud.sys.entity.User;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
 public class MyQueryWrapper<T> extends QueryWrapper {
-    public void allEq2(T queryParam, PageRequest pageRequest) throws IllegalAccessException {
+    public MyQueryWrapper<T> allEq2(T queryParam, PageRequest pageRequest) throws IllegalAccessException {
         Class userCla = (Class) queryParam.getClass();
         Field[] fs = userCla.getDeclaredFields();
         for(int i = 0;i < fs.length;i++)
@@ -36,9 +39,9 @@ public class MyQueryWrapper<T> extends QueryWrapper {
          //       }
             }
         }
-
+        return this;
     }
-    public void allEq2(T queryParam) throws IllegalAccessException {
+    public MyQueryWrapper<T> allEq2(T queryParam) throws IllegalAccessException {
         Class userCla2 = (Class) queryParam.getClass();
         Field[] fs = userCla2.getDeclaredFields();
         for(int i = 0;i < fs.length;i++)
@@ -54,11 +57,25 @@ public class MyQueryWrapper<T> extends QueryWrapper {
                     this.like(this.camelToUnderline(f.getName()),val);
                 }else if(type.endsWith("int")||type.endsWith("Integer")){
                     this.eq(this.camelToUnderline(f.getName()),val);
+                }else if( type.endsWith("Long")){
+                    this.eq(this.camelToUnderline(f.getName()),val);
                 }
             }
         }
 
+        return this;
 
+    }
+    public void setAuthority(){
+        User user=UserThreadLocal.get();
+        Role role=user.getDefaultRole();
+         if("company".equals(role.getAuthorityCode())){
+            this.eq("company_id",role.getCompanyId());
+        }else if("unit".equals(role.getAuthorityCode())){
+             this.eq("unit_id",role.getUnitId());
+        }else if("owner".equals(role.getAuthorityCode())){
+             this.eq("created_by",user.getUserId());
+        }
 
     }
     public static String camelToUnderline(String str) {

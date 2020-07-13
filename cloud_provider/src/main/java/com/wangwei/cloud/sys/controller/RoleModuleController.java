@@ -36,25 +36,37 @@ public class RoleModuleController {
     public  List<ModuleMenu>  getUserModule( ){
        // List<ModuleMenu> lists= service.list();
       //  System.out.println(service.getUserModules("admin",1,0).toString());
-        List<ModuleMenu> lists=service.getUserModules("admin",1,0 );
+        List<ModuleMenu> lists=service.getUserModules("ALL",1,0L);
         System.out.println(lists.toString());
        return  lists;
 
 
     }
+    @RequestMapping(value = "/getModuleByRoleCode",method= RequestMethod.POST,produces="application/json;charset=utf-8")
+    @ApiOperation("查询三级角色模块")
+    public  List<ModuleMenu>  getModuleByRoleCode( @RequestParam String roleCode,@RequestParam String moduleName){
+        // List<ModuleMenu> lists= service.list();
+        //  System.out.println(service.getUserModules("admin",1,0).toString());
+        List<ModuleMenu> lists=service.getUserModulesByUserCode(roleCode ,moduleName);
+        System.out.println(lists.toString());
+        return  lists;
+
+
+    }
+
     @RequestMapping(value = "/getUserModule2",method= RequestMethod.POST)
     @ApiOperation("查询所有")
     public ResponseEntity<List<ModuleMenu>> getUserModule2( ){
         // List<ModuleMenu> lists= service.list();
-        return Results.success(service.getUserModules( 1,0));
+        return Results.success(service.getUserModules( 1,0L));
 
 
     }
     @RequestMapping(value = "/getUserModule3",method= RequestMethod.POST)
     @ApiOperation("查询所有")
-    public ResponseEntity<List<ModuleMenu>> getUserModule3( Integer roleId){
+    public ResponseEntity<List<ModuleMenu>> getUserModule3( Long roleId){
 
-        return Results.success(service.getUserModules( 1,0,roleId));
+        return Results.success(service.getUserModules( 1,0L,roleId));
 
 
     }

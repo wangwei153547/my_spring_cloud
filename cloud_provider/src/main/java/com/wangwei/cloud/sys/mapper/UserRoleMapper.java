@@ -29,5 +29,5 @@ public interface UserRoleMapper extends BaseMapper<UserRole> {
             "sys_role t1\n" +
             "where t.role_id=t1.role_id\n" +
             "and t.user_id=#{userId} ")
-    public List<Map<String,Object>> getUserRoles(int userId );
+    public List<Map<String,Object>> getUserRoles(Long userId );
 }

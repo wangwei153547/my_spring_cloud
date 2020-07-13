@@ -2,6 +2,7 @@ package com.wangwei.cloud.entity;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -29,7 +31,7 @@ public class User implements Serializable {
 
 
     @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
+    private Long userId;
 
 
     private String userName;
@@ -41,6 +43,9 @@ public class User implements Serializable {
     private String userCode;
 
     private String isUse;
-
+    @TableField(exist=false)
+    List<Role> roles;
+    @TableField(exist=false)
+    Role  defaultRole;
 
 }

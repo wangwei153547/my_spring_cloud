@@ -1,9 +1,12 @@
 package com.wangwei.cloud.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import com.wangwei.cloud.config.BaseTable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,13 +26,13 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("sys_user")
 @ApiModel(value="User对象", description="")
-public class User implements Serializable {
+public class User extends BaseTable implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户id")
     @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
+    private Long userId;
 
     @ApiModelProperty(value = "用户名称")
     private String userName;
@@ -41,6 +44,13 @@ public class User implements Serializable {
     private String userCode;
     @ApiModelProperty(value = "是否启用")
     private String isUse;
+    @TableField(exist=false)
+    List<Role> roles;
+    @TableField(exist=false)
+     Role  defaultRole;
+
+
+
 
 
 }

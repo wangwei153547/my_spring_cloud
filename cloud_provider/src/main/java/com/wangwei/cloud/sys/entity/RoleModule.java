@@ -28,11 +28,11 @@ public class RoleModule implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "role_module_id", type = IdType.AUTO)
-    private Integer roleModuleId;
+    private Long roleModuleId;
 
-    private Integer roleId;
+    private Long roleId;
 
-    private Integer moduleId;
+    private Long moduleId;
 
     private String isUse;
 

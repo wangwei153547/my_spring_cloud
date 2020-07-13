@@ -21,20 +21,20 @@ import java.util.List;
 public class RoleModuleServiceImpl extends ServiceImpl<RoleModuleMapper, RoleModule> implements IRoleModuleService {
 
     @Override
-    public List<ModuleMenu> getUserModules(String user_name, int moduleLevl, int parentModuleId){
+    public List<ModuleMenu> getUserModules(String roleCode, Integer moduleLevl, Long parentModuleId){
 
 
 
-        List<ModuleMenu> lists= this.baseMapper.getModuleMenu(user_name,moduleLevl,parentModuleId);
+        List<ModuleMenu> lists= this.baseMapper.getModuleMenu(roleCode,moduleLevl,parentModuleId);
         System.out.println(lists.toString());
          for(ModuleMenu moduleMenu:lists){
-             List<ModuleMenu> lists2=getUserModules(  user_name, moduleMenu.getModuleLevl()+1, moduleMenu.getModuleId());
+             List<ModuleMenu> lists2=getUserModules(  roleCode, moduleMenu.getModuleLevl()+1, moduleMenu.getModuleId());
              moduleMenu.setChildModule(lists2);
          }
         return lists;
     }
     @Override
-    public List<ModuleMenu> getUserModules(int moduleLevl, int parentModuleId){
+    public List<ModuleMenu> getUserModules(int moduleLevl, Long parentModuleId){
 
 
         System.out.println(333333);
@@ -47,7 +47,7 @@ public class RoleModuleServiceImpl extends ServiceImpl<RoleModuleMapper, RoleMod
         return lists;
     }
     @Override
-    public List<ModuleMenu> getUserModules( int moduleLevl, int parentModuleId,Integer roleId){
+    public List<ModuleMenu> getUserModules( int moduleLevl, Long parentModuleId,Long roleId){
 
 
 
@@ -58,8 +58,14 @@ public class RoleModuleServiceImpl extends ServiceImpl<RoleModuleMapper, RoleMod
         }
         return lists;
     }
+
     @Override
-    public void deleteByRoleModule(int roleId, int moduleId){
+    public List<ModuleMenu> getUserModulesByUserCode(String roleCode,String moduleName ) {
+        return this.baseMapper.getUserModulesByUserCode(roleCode,  moduleName );
+    }
+
+    @Override
+    public void deleteByRoleModule(Long roleId, Long moduleId){
         this.baseMapper.deleteByRoleModule( roleId,  moduleId);
     }
 }
