@@ -3,9 +3,9 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9005/eureka
+      defaultZone: http://172.17.0.3:9005/eureka
   instance:
-    ip-address: localhost
+    ip-address: 172.17.0.3
     prefer-ip-address: true
 spring:
   application:
