@@ -21,17 +21,19 @@ spring:
       max-total: 5                                            # 最大连接数
       max-wait-millis: 200                                    # 等待连接获取的最大超时时间
       min-idle: 5                                             # 数据库连接池的最小维持连接数
-
+    redis:
+      host: 114.215.42.193
+      database: 0
 
 eureka:
   client:
     service-url:
-      defaultZone: http://172.17.0.3:9005/eureka
+      defaultZone: http://172.31.14.148:9005/eureka
   instance:
-    ip-address: 172.17.0.3
+    ip-address: 172.31.14.148
     prefer-ip-address: true
 # sso　认证配置
-#oauth2-server: http://172.17.0.3:18082
+#oauth2-server: http://172.31.14.148:18082
 
 #security:
 #  oauth2:
